@@ -5,11 +5,12 @@ import { AuthGuard } from './core/guards/authguard.guard';
 
 const routes: Routes = [
   {
-    path: '', component: MainLayoutComponent, children: [
+    path: '', component: MainLayoutComponent,  children: [
       {
         path: '', loadChildren: './modules/home/home.module#HomeModule', //canActivate: [AuthGuard]
       },
       { path: '', loadChildren: './modules/auth/auth.module#AuthModule' },
+      { path: '', loadChildren: './modules/article/article.module#ArticleModule' },
       { path: 'manage', loadChildren: './modules/management/management.module#ManagementModule'}
     ]
   },

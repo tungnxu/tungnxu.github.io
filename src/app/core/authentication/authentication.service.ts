@@ -15,7 +15,6 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser$ = this.currentUserSubject.asObservable();
-    console.log('khoi tao service authen lan 1');
    }
 
    public get currentUserValue(): any {

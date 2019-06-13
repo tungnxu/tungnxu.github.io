@@ -1,7 +1,7 @@
 import { CategoryModel } from './categories.model';
 
 export interface PostListViewModel{
-    id: string;
+    id?: string;
     title?: string; 
     summary?: string;
     thumbnail?: string;
@@ -33,6 +33,20 @@ export class PostModel {
     summary?: string;
     thumbnail?: string;
     createdDate?: Date;
+    slug?: string;
+    readingTime?: number;
+    body?: string;
+
+    categoryName?: string;
+    categorySlug?: string;
+}
+
+export class PostModelResponse {
+    id?: string;
+    title?: string; 
+    summary?: string;
+    thumbnail?: string;
+    createdDate?: any;
     slug?: string;
     readingTime?: number;
     body?: string;

@@ -22,7 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     SharedModule,
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
   ],
   providers: [AuthenticationService]
 

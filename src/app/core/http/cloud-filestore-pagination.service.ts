@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { tap, scan } from 'rxjs/operators';
+import { tap, scan, take } from 'rxjs/operators';
 import { QueryConfig } from 'src/app/shared/models/query.model';
 import { BaseCFPaginationService } from './base-cf-pagination.service';
+
 
 @Injectable()
 export class CloudFilestorePaginationService implements BaseCFPaginationService {
@@ -11,6 +12,8 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
   private _data = new BehaviorSubject([]);
   private _done = new BehaviorSubject(false);
   private _loading = new BehaviorSubject(false);
+
+  subscriptions: Subscription[]=[];
 
   done: Observable<boolean> = this._done.asObservable();
   loading: Observable<boolean> = this._loading.asObservable();
@@ -38,9 +41,6 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
           refBuild = refBuild.orderBy(query.orderBy, query.reverse ? 'desc' : 'asc')
         }
       }
-      
-      
-
       return refBuild;
     });
 
@@ -53,12 +53,30 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
 
   public loadMore() {
     const cursor = this.getCursor();
-
     const more = this.db.collection(this.query.path, ref => {
-      return ref
-              .orderBy(this.query.orderBy, this.query.reverse ? 'desc' : 'asc')
-              .limit(this.query.limit)
-              .startAfter(cursor)
+
+      let refBuild : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+      if(this.query.limit != 0){
+        refBuild = refBuild.limit(this.query.limit);
+      }else {
+        refBuild = refBuild.limit(30);
+      }
+      if(this.query.where && this.query.where.length > 0){
+        this.query.where.forEach(x => {
+          refBuild = refBuild.where(x.field, x.operator, x.value);
+        })
+      }else {
+        if( this.query.orderBy && this.query.reverse){
+          refBuild = refBuild.orderBy(this.query.orderBy, this.query.reverse ? 'desc' : 'asc')
+        }
+      }
+      refBuild = refBuild.startAfter(cursor);
+      return refBuild;
+
+      // return ref
+      //         .orderBy(this.query.orderBy, this.query.reverse ? 'desc' : 'asc')
+      //         .limit(this.query.limit)
+      //         .startAfter(cursor)
     })
     this.mapAndUpdate(more);
   }
@@ -76,7 +94,7 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
 
     if (this._loading.value) { return };
 
-    return col.snapshotChanges().pipe(
+    let mapUpdate = col.snapshotChanges().pipe(take(1),
       tap(arr => {
         let values = arr.map(a => {
           const data = a.payload.doc.data();
@@ -97,6 +115,15 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
           this._done.next(true)
         }
     }))
-    .subscribe()
+    .subscribe();
+    this.subscriptions.push(mapUpdate);
+
+
+
+    return mapUpdate;
+  }
+
+  disposeService(){
+    this.subscriptions.forEach(subscription =>subscription.unsubscribe())
   }
 }

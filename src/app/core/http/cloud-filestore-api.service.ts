@@ -8,9 +8,7 @@ import { QueryConfig } from 'src/app/shared/models/query.model';
 @Injectable({ providedIn: 'root' })
 export class CloudFilestoreApiService {
 
-  private _data = new BehaviorSubject([]);
   constructor(private db: AngularFirestore) {
-    this._data.subscribe(data => console.log(data))
    }
 
   private formatErrors(error: any) {
@@ -54,6 +52,21 @@ export class CloudFilestoreApiService {
   }
 
   public create(colectionName: string, payload: any) {
-    return this.db.collection(colectionName).add(payload);
+    return new Promise<any>((resolve, reject) =>{
+      this.db.collection(colectionName).add(payload).then(res => {
+        resolve(res);
+      },(rej)=>{
+        reject(rej);
+      });
+     
+    });
+  }
+
+  public update(colectionName: string, payload: any) {
+    return this.db.collection(colectionName).doc(payload.id).set({ completed: true }, { merge: true });
+  }
+
+  public delete(colectionName: string, payload: any) {
+    return this.db.collection(colectionName).doc(payload.id).delete();
   }
 }

@@ -5,7 +5,8 @@ import { ManagePostsPageComponent } from './pages/manage-posts-page/manage-posts
 
 const routes: Routes = [
   { path:'',    component: ManagePostsPageComponent  },
-  { path:'new-post',    component: CreatePostsPageComponent  }
+  { path:'new-post',    component: CreatePostsPageComponent  },
+  { path:'edit-post/:slug', component: CreatePostsPageComponent }
 ];
 
 @NgModule({

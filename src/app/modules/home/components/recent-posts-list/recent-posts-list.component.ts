@@ -1,80 +1,80 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PostModel, PostListViewModel } from 'src/app/shared/models/posts.model';
+import { Observable, Subscription } from 'rxjs';
+import { PostModel, PostListViewModel, PostModelResponse } from 'src/app/shared/models/posts.model';
 import { QueryConfig } from 'src/app/shared/models/query.model';
 import { PostService } from '../../services/post.service';
 import { CloudFilestorePaginationService } from 'src/app/core/http/cloud-filestore-pagination.service';
 import { map, take } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'recent-posts-list',
   templateUrl: './recent-posts-list.component.html',
   styleUrls: ['./recent-posts-list.component.scss'],
-  providers: [
-    CloudFilestorePaginationService
-  ]
+
 })
 export class RecentPostsListComponent implements OnInit {
 
-  private item$: Observable<PostModel[]>;
-
+  private item$: Observable<PostModelResponse[]>;
+  private postService: CloudFilestorePaginationService;
   public recentPosts: PostListViewModel[];
-  constructor(private postService: CloudFilestorePaginationService) {
+  subscriptions: Subscription[]=[];
+  constructor(private db: AngularFirestore, route:ActivatedRoute) {
+    route.params.subscribe(val => {
 
-    const postQuery: QueryConfig = {
-      limit: 0,
-      orderBy: 'createdDate',
-      path: 'posts',
-      prepend: false,
-      reverse: true, //true will show newest first
-    }
-    this.item$ = this.postService.get(postQuery);
-    this.item$.pipe(
-      map(listPost => {
-        let recentPostlst: PostListViewModel[] = [];
-        debugger;
-        listPost.forEach(post => {
-          recentPostlst.push({
-            id: post.id,
-            slug: post.slug,
-            summary: post.summary,
-            thumbnail: post.thumbnail,
-            title: post.title,
-            categoryName: post.categoryName,
-            categorySlug: post.categorySlug,
-          })
-        });
-        return recentPostlst;
-      })
-    ).subscribe(data => {
-      this.recentPosts = data;
-    }
-    );
+      if(this.postService) { this.postService.disposeService();}
+      this.postService = new CloudFilestorePaginationService(this.db);
+      const postQuery: QueryConfig = {
+        limit: 2,
+        orderBy: 'createdDate',
+        path: 'posts',
+        prepend: false,
+        reverse: true, //true will show newest first
+      }
+      this.item$ = this.postService.get(postQuery);
+      this.subscriptions.push( 
+      this.item$.pipe(
+        map(listPost => {
+          let recentPostlst: PostListViewModel[] = [];
+          listPost.forEach(post => {
+            recentPostlst.push({
+              id: post.id,
+              slug: post.slug,
+              summary: post.summary,
+              thumbnail: post.thumbnail,
+              title: post.title,
+              categoryName: post.categoryName,
+              categorySlug: post.categorySlug,
+              createdDate: post.createdDate.toDate()
+            })
+          });
+          return recentPostlst;
+        })
+      ).subscribe(data => {
+        this.recentPosts = data;
+      }
+      ))
+    });
+   
 
-    // const categoryQuery: QueryConfig = {
-    //   limit: 5,
-    //   orderBy: 'categoryName',
-    //   path: 'categories',
-    //   prepend: false,
-    //   reverse: false, //true will show newest first
-    // }
-    // this.item2$ = this.cloudFilestorePaginationService.get(categoryQuery);
 
   }
 
   ngOnInit() {
+   
   }
 
-  public addItem() {
-    // this.cloudFilestoreApiService.create('posts', post);
-    console.log("vua them bai so ${index}");
-    // }
 
-  }
 
-  public more() {
+  public loadMore() {
     this.postService.loadMore();
-    // this.mapAndUpdate(more)
+  }
+
+
+  ngOnDestroy(): void {
+    if(this.postService) this.postService.disposeService();
+    if(this.subscriptions) this.subscriptions.forEach(subscription =>subscription.unsubscribe());
   }
 
 

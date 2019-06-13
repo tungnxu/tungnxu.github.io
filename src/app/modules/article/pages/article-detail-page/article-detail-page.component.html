@@ -1,0 +1,30 @@
+<main *ngIf="post" >
+  <div class="header-container bg-gray-100">
+  <div class="mx-auto max-w-5xl py-5"> 
+    <div class="flex mb-4 -mx-3 items-center">
+        <div class="w-1/2 mx-3">
+        <img class="rounded-lg" [src]="post?.thumbnail" alt="" srcset="">
+        </div>
+        <div class="w-1/2 mx-3">
+        <p class="text-sm text-gray-600 uppercase font-semibold"><i class="icon ion-md-folder-open"></i> {{post?.categoryName}}</p>
+        <h2 class="text-2xl font-semibold">{{post?.title}}</h2>
+        <p>{{post?.summary}}</p>
+        <div class="flex my-5">
+            <p class="text-xs text-gray-500 uppercase font-semibold mr-2"><i class="icon ion-md-alarm"></i> {{post?.readingTime}} MIN READ</p>
+            <p class="text-xs text-gray-500 uppercase font-semibold mr-2"><i class="icon ion-md-laptop"></i> {{post?.createdDate?.toDate() | date}}</p>
+        </div>
+       
+        </div>
+    </div>
+  </div>
+</div>
+<div class="body-container my-5">
+    <div class="mx-auto max-w-3xl  py-5"> 
+        <div [innerHtml]="post?.body">
+          </div>
+    </div>
+</div>
+
+   
+
+</main>
