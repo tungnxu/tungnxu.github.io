@@ -1,14 +1,23 @@
-<main class="my-5">
-
+<main class="block lg:flex mx-auto my-5 container min-h-screen">
   
+  <div class="w-full lg:w-1/5">
+    <div class="px-4  mb-8 lg:mb-0" >
+      <!-- <img class="rounded-full mx-auto" src="https://picsum.photos/100/100" alt=""> -->
+      <app-image-shell [class]="'object-cover rounded-full mx-auto h-24 w-24'" [src]="'https://lh3.googleusercontent.com/dGkYylk5vbGMY72y1GTxh6hOX6zPc9EbvYqWkyDirysGzHrZQCasBYCreouPuPsHdtdDWWBFiSDF2u8tzM-1JzQWa30izaEhiJsuuQ5AvedL4xHca2ql_gxW-TwcKuR8Pna3KUuetw=w2400'"></app-image-shell>
 
-
-
-
-
-
+      <div class="text-center my-2">
+      <h2 class="text-lg font-semibold">TungNXU</h2>
+      <p class="text-gray-600 text-sm  mb-0">Tiêu dao</p>
+      <p class="text-purple-500 text-sm mb-2">Front-end Dev - Designer</p>
+      <p class="text-gray-600 text-sm">Hi there, <br>This page includes things that i have learned about Front-end programming, design & UX-UI</p>
+    </div>
+    </div>
+  </div>
+  <div class="w-full lg:w-4/5">
+    <!-- <button (click)="addModal()">Add Modal</button> -->
+  <recent-posts-list></recent-posts-list>
+  </div>
   <!-- Slide bai noi bat -->
   <!-- <feature-posts-list></feature-posts-list> -->
-
-  <recent-posts-list></recent-posts-list>
+  
 </main>

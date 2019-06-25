@@ -25,7 +25,10 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/sitemap.xml",
+              "src/robots.txt",
+              "src/about.html"
             ],
             "styles": [
               "src/styles/styles.scss"
@@ -91,7 +94,10 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/sitemap.xml",
+              "src/robots.txt",
+              "src/about.html"
             ]
           }
         },

@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { tap, scan, take } from 'rxjs/operators';
+import { tap, scan, take, delay } from 'rxjs/operators';
 import { QueryConfig } from 'src/app/shared/models/query.model';
 import { BaseCFPaginationService } from './base-cf-pagination.service';
 
 
-@Injectable()
+
 export class CloudFilestorePaginationService implements BaseCFPaginationService {
   private query: QueryConfig;
   private _data = new BehaviorSubject([]);
   private _done = new BehaviorSubject(false);
   private _loading = new BehaviorSubject(false);
+  // private _outOfData: boolean = false;
 
   subscriptions: Subscription[]=[];
 
@@ -52,6 +53,7 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
   }
 
   public loadMore() {
+    if(this._done.value || this._loading.value) return;
     const cursor = this.getCursor();
     const more = this.db.collection(this.query.path, ref => {
 
@@ -78,7 +80,8 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
       //         .limit(this.query.limit)
       //         .startAfter(cursor)
     })
-    this.mapAndUpdate(more);
+     this.mapAndUpdate(more);
+    
   }
 
   public getCursor() {
@@ -102,6 +105,8 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
           const id = a.payload.doc.id;
           return { id, ...data, doc };
         })
+
+        // if(values.length == 0) this._outOfData = true;
   
         // If prepending, reverse the batch order
         values = this.query.prepend ? values.reverse() : values
@@ -109,7 +114,6 @@ export class CloudFilestorePaginationService implements BaseCFPaginationService 
         // update source with new values, done loading
         this._data.next(values)
         this._loading.next(false)
-
         // no more values, mark done
         if (!values.length) {
           this._done.next(true)

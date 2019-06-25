@@ -5,6 +5,7 @@ import { PostModel, PostListViewModel, PostModelResponse } from 'src/app/shared/
 import { QueryConfig } from 'src/app/shared/models/query.model';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { LoadingBarService } from '@ngx-loading-bar/core';
 
 @Component({
   selector: 'app-post-list',
@@ -18,11 +19,12 @@ export class PostListComponent implements OnInit {
   subscriptions: Subscription[]=[];
   public listPosts: PostListViewModel[];
   private postService: CloudFilestorePaginationService;
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private loadingBar: LoadingBarService) {
   //  this.postService = new CloudFilestorePaginationService(this.db);
    }
 
    ngOnChanges(changes: SimpleChanges): void {
+   
      if(this.postService) { this.postService.disposeService(); this.dispose() }
     this.postService = new CloudFilestorePaginationService(this.db);
      const postQuery: QueryConfig = {
@@ -47,6 +49,7 @@ export class PostListComponent implements OnInit {
             title: post.title,
             categoryName: post.categoryName,
             categorySlug: post.categorySlug,
+            readingTime: post.readingTime,
             createdDate: post.createdDate.toDate()
           })
         });
@@ -54,6 +57,7 @@ export class PostListComponent implements OnInit {
       })
       ).subscribe(data => {
         this.listPosts = data;
+        this.loadingBar.complete();
       }
       )
     )
@@ -61,6 +65,10 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  trackByFn(index, item) {
+    return index;
   }
 
   public loadMore() {

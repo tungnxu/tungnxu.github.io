@@ -8,7 +8,7 @@ export interface Config {
 export interface QuillInstance {
   on: any
   getText: any
-  
+  numOfWord?: number;
 }
 
 export default class Counter {
@@ -23,7 +23,7 @@ export default class Counter {
 
     this.quill.on('text-change', () => {
       const length = this.calculate()
-
+      this.quill.numOfWord = length;
       container.innerHTML = length + ' ' + 'từ'
     })
   }

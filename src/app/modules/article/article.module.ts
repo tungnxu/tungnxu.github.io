@@ -6,6 +6,7 @@ import { ArticleListPageComponent } from './pages/article-list-page/article-list
 import { ArticleDetailPageComponent } from './pages/article-detail-page/article-detail-page.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ManagementModule } from '../management/management.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     ArticleRoutingModule,
-    SharedModule
+    SharedModule,
+    ManagementModule
   ],
   entryComponents: [
     ArticleListPageComponent,ArticleDetailPageComponent

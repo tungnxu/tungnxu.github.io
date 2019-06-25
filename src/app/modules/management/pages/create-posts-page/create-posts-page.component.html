@@ -1,73 +1,9 @@
 <div class="container mx-auto max-w-5xl">
-  <h1 class="text-2xl text-center font-semibold">BÀI VIẾT MỚI</h1>
+    <h1 class="text-2xl text-center font-semibold">BÀI VIẾT MỚI</h1>
 
-  <form #postForm="ngForm" (ngSubmit)="onSubmit()" class="my-4">
-    <div class="flex mb-4 -mx-3">
-      <div class="w-3/4 px-3">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Tên bài viết</label>
-          <input autocomplete="off" autocorrect="off" spellcheck="false"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text" name="title" id="title" [(ngModel)]="newPost.title" (ngModelChange)="changeTitle($event)">
-          <p class="text-right text-right text-gray-500 text-sm py-1"> {{myDomain}}{{showSlugSEO(newPost.title)}}{{slugPost}}</p>
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="body">Nội dung bài viết</label>
-          <tquill-editor [placeholder]="'Write your Epic'" [model]="newPost.body" (modelChange)="changeContent($event)"></tquill-editor>
-        </div>
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit" [disabled]="!postForm.valid">Đăng bài</button>
-
-      </div>
-      <div class="w-1/4 px-3">
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="postSummary">Tóm tắt</label>
-          <textarea
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text" name="summary" id="summary" rows="3" [(ngModel)]="newPost.summary"></textarea>
-        </div>
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="thumbnail">Ảnh Thumnail</label>
-          <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text" name="thumbnail" id="thumbnail" [(ngModel)]="newPost.thumbnail">
-        </div>
-
-        <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="">Phân loại</label>
-          <label *ngFor="let cat of categories">
-            <input type="radio" [(ngModel)]="selectedCat" name="clap" [value]="cat.categorySlug">
-            {{ cat.categoryName }}
-          </label>
-        </div>
-
-        <!-- <div class="flex mb-4 -mx-3">
-              <div class="w-1/2 px-3">
-                <div>
-                  <label class="block text-gray-700 text-sm font-bold mb-2" for="slug">Slug</label>
-                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" name="slug" id="slug"  [(ngModel)]="slugPost" >
-                </div>
-              </div>
-              <div class="w-1/2 px-3">
-              
-              </div>
-            </div> -->
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-  </form>
-
-
+  <edit-post-panel></edit-post-panel>
 </div>
-{{ newPost | json}}
+
+
+
+<button (click)="getData()">Getdata</button>

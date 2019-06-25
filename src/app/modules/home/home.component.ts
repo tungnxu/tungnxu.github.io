@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ModalGeneratorService, ModalOptions } from 'src/app/core/services/modal-generator.service';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +11,16 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   // private item$: Observable<any>;
-  constructor() { 
+  constructor(private modalGeneratorService: ModalGeneratorService) { 
     // this.item$ = this.cloudFilestoreApiService.get('users');
   }
 
   ngOnInit() {
+  }
+
+  addModal() {
+    const modalOptions = new ModalOptions('BÀI VIẾT MỚI','Modal example body');
+    this.modalGeneratorService.addModal(ModalComponent, modalOptions);
   }
 
   // public addItem(){

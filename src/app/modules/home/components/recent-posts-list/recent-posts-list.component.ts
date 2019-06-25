@@ -4,7 +4,7 @@ import { PostModel, PostListViewModel, PostModelResponse } from 'src/app/shared/
 import { QueryConfig } from 'src/app/shared/models/query.model';
 import { PostService } from '../../services/post.service';
 import { CloudFilestorePaginationService } from 'src/app/core/http/cloud-filestore-pagination.service';
-import { map, take } from 'rxjs/operators';
+import { map, take, delay } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 
@@ -25,8 +25,9 @@ export class RecentPostsListComponent implements OnInit {
 
       if(this.postService) { this.postService.disposeService();}
       this.postService = new CloudFilestorePaginationService(this.db);
+      
       const postQuery: QueryConfig = {
-        limit: 2,
+        limit: 6,
         orderBy: 'createdDate',
         path: 'posts',
         prepend: false,
@@ -46,6 +47,7 @@ export class RecentPostsListComponent implements OnInit {
               title: post.title,
               categoryName: post.categoryName,
               categorySlug: post.categorySlug,
+              readingTime: post.readingTime,
               createdDate: post.createdDate.toDate()
             })
           });
@@ -65,6 +67,10 @@ export class RecentPostsListComponent implements OnInit {
    
   }
 
+  trackByFn(index, item) {
+    return index;
+  }
+
 
 
   public loadMore() {
@@ -75,6 +81,8 @@ export class RecentPostsListComponent implements OnInit {
   ngOnDestroy(): void {
     if(this.postService) this.postService.disposeService();
     if(this.subscriptions) this.subscriptions.forEach(subscription =>subscription.unsubscribe());
+    this.postService = null;
+    console.log("Desatroi com");
   }
 
 

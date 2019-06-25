@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { ManagementRoutingModule } from './management-routing.module';
 import { ManagePostsPageComponent } from './pages/manage-posts-page/manage-posts-page.component';
 import { CreatePostsPageComponent } from './pages/create-posts-page/create-posts-page.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
@@ -14,7 +13,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     ManagementRoutingModule,
     FormsModule,
-    CKEditorModule,
     SharedModule
   ]
 })

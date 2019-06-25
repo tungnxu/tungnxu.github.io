@@ -1,0 +1,18 @@
+<div  class="modal" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header w-100 flex justify-between items-center px-4 py-2 bg-gray-100">
+        <h5 class="modal-title font-semibold text-lg uppercase"><i class="icon ion-md-brush"></i> {{modalOptions.title}}</h5>
+        <button type="button" class="close text-2xl " aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <edit-post-panel [newPost]="modalOptions?.data" (doneNow)="closeModal()"></edit-post-panel>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div> -->
+  </div>
+</div>
+<!-- Use modal overlay -->
+<div class="modal-overlay" [class.hide]="close" id="modal-overlay" (click)="closeModal()"></div>

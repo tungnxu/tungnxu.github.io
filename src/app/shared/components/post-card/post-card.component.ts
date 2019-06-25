@@ -9,6 +9,7 @@ import Utils from '../../helpers/utils';
 })
 export class PostCardComponent implements OnInit {
   @Input() postInfo: PostModel = {}
+  @Input() index: number = 0;
   constructor() { }
 
   ngOnInit() {

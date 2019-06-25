@@ -1,12 +1,12 @@
-    <div class="flex flex-wrap ">
-        <div *ngFor="let item of listPosts " class="w-1/3  mb-4">
-          <app-post-card [postInfo]="item"></app-post-card>
+    <div class="flex flex-wrap -px-3">
+        <div *ngFor="let item of listPosts; trackBy: trackByFn; index as i " class="w-full  md:w-1/2 lg:w-1/4 xl:w-1/4 px-3 mb-4">
+          <app-post-card [postInfo]="item" [index]="i"></app-post-card>
         </div>
-        <button (click)="loadMore()">Them bai moi</button>
+        
       
         
       </div>
-
+      <button (click)="loadMore()">Them bai moi</button>
   <!-- <ul>
       <li *ngFor="let item of listPosts ">
        <a href="">{{item.title}}</a> 

@@ -1,0 +1,3 @@
+<div class="wrapper-img" [ngClass]="_class">
+<img class="inner-img " [ngClass]="_class" [class.skeleton]="!imageLoaded" [src]="_src" [alt]="_alt" (load)="_imageLoaded()"  />
+</div>

@@ -1,0 +1,49 @@
+.post-card-item {
+    // opacity: 0;
+    animation: .4s cubic-bezier(.25, .25, .25, 1.25) both  fade-in;
+  }
+  
+  
+//   // Loop from 1-9.
+//   @for $i from 1 through 9 {
+//       .post-card-item {
+        
+//         // :nth-child(1-9) 
+//         &:nth-child(#{$i}) {
+          
+//           // Delay the animation. Delay increases as items loop.
+//           animation-delay: $i * (.03s);
+//         }
+//       }
+//     }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+  
+  
+  @keyframes pulse {
+    0% {
+      background: lightgray;
+      transform: scale(1);
+    }
+  
+    25% {
+      background: darken(lightgray, 10%);
+      transform: scale(1.015);
+    }
+  
+    50% {
+      background: lightgray;
+      transform: scale(1);
+    }
+  }
+  

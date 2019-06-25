@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@an
 import { PostModel } from 'src/app/shared/models/posts.model';
 import { CloudFilestoreApiService } from 'src/app/core/http/cloud-filestore-api.service';
 import { CategoryModel } from 'src/app/shared/models/categories.model';
-import { QueryConfig } from 'src/app/shared/models/query.model';
 import Utils from 'src/app/shared/helpers/utils';
 import { CategoryService } from 'src/app/core/mocks/categories_data';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { catchError, map } from 'rxjs/operators';
 
 
 @Component({
@@ -29,14 +30,15 @@ export class CreatePostsPageComponent implements OnInit {
   constructor(private cloudFilestoreApiService: CloudFilestoreApiService,
     private categoriesService: CategoryService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private db: AngularFirestore) {
     this.loadCategory();
-      this.route.params.subscribe(params => {
-        if(params['slug']) {
-          console.log(params['slug']);
-          //TODO; get data and biding to edit + change mode to edit
-        }
-      })
+    // this.route.params.subscribe(params => {
+    //   if(params['slug']) {
+    //     console.log(params['slug']);
+    //     //TODO; get data and biding to edit + change mode to edit
+    //   }
+    // })
   }
 
   ngOnInit() {
@@ -91,12 +93,37 @@ export class CreatePostsPageComponent implements OnInit {
     return str ? Utils.slugify(this.newPost.title) + '-i.' : "" + '-i.';
   }
 
-  //   public onChange( { editor }: ChangeEvent ) {
-  //    this.newPost.body = editor.getData();
-  // }
-
   public changeContent($event): void {
     this.newPost.body = $event;
+  }
+
+  public getData() {
+    this.db.collection<PostModel>('posts').snapshotChanges()
+      .pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        }))
+      ).subscribe(theData => {
+        var theJSON = JSON.stringify(theData);
+        var uri = "data:application/json;charset=UTF-8," + encodeURIComponent(theJSON);
+
+        var a = document.createElement('a');
+        a.href = uri;
+        a.innerHTML = "Right-click and choose 'save as...'";
+        document.body.appendChild(a);
+      })
+  }
+
+
+  public find(items, text) {
+    text = text.split(' ');
+    return items.filter(function (item) {
+      return text.every(function (el) {
+        return item.content.indexOf(el) > -1;
+      });
+    });
   }
 
 

@@ -16,7 +16,7 @@ Quill.register('modules/imageInsert', ImageInsert)
   styleUrls: ['./tquill-editor.component.scss']
 })
 export class TquillEditorComponent implements OnInit {
-  @Output() public modelChange: EventEmitter<string> = new EventEmitter();
+  @Output() public modelChange: EventEmitter<any> = new EventEmitter();
   @Input() public model: string;
   @Input() public placeholder: string;
   public configEditor = {
@@ -40,7 +40,9 @@ export class TquillEditorComponent implements OnInit {
   public onModelChange(html: string) {
     // const plainText = this.nativeEditor.elementRef.nativeElement.textContent;
     // this.plainTextChange.emit(plainText);
-    this.modelChange.emit(html);
+    // console.log(this.editorInstance);
+    let words = this.editorInstance.numOfWord;
+    this.modelChange.emit({html, words});
   }
 
   public logSelection($event) {

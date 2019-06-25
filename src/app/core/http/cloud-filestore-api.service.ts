@@ -63,7 +63,13 @@ export class CloudFilestoreApiService {
   }
 
   public update(colectionName: string, payload: any) {
-    return this.db.collection(colectionName).doc(payload.id).set({ completed: true }, { merge: true });
+    return new Promise<any>((resolve, reject) =>{
+      this.db.collection(colectionName).doc(payload.id).set(payload).then(res => {
+        resolve(res);
+      },(rej)=>{
+        reject(rej);
+      });
+    });
   }
 
   public delete(colectionName: string, payload: any) {

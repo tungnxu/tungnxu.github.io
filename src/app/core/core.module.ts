@@ -11,6 +11,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [MainLayoutComponent],
@@ -18,11 +19,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     BrowserModule,
     HttpClientModule,
     CommonModule,
+    BrowserAnimationsModule,
     CoreRoutingModule,
     SharedModule,
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
   ],
   providers: [AuthenticationService]
 

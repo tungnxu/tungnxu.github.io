@@ -1,20 +1,23 @@
-<div *ngIf="postInfo" class="max-w-sm rounded overflow-hidden shadow-lg">
-  <a [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]"> <img class="w-full" [src]="postInfo.thumbnail ? postInfo.thumbnail : 'https://picsum.photos/341/213'" alt="Sunset in the mountains"></a>
-  <div class="px-6 py-4">
-<div class="flex justify-between">
-    <p class="text-sm text-gray-600 uppercase font-semibold"><i class="icon ion-md-folder-open"></i> {{postInfo?.categoryName}}</p>
-    <p class="text-xs text-gray-500 uppercase font-semibold mr-2">{{postInfo?.createdDate | date}}</p>
-</div>
-     
-   
-      <div class="font-bold text-xl mb-2"><a [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]">{{postInfo.title}}</a></div>
-    <p class="text-gray-700 text-base">
-        {{postInfo.summary}}
+<div *ngIf="postInfo" class="post-card-item flex md:block  rounded overflow-hidden shadow-lg " [ngStyle]="{'animation-delay': index * (.06) + 's'}">
+  <a [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]"> <img class="object-cover h-full w-48 md:h-auto md:w-full"
+      [src]="postInfo.thumbnail ? postInfo.thumbnail : 'https://picsum.photos/341/213'"
+      alt="Sunset in the mountains"></a>
+  <div class="p-4 w-full">
+    <div class="flex justify-between mb-2">
+      <p class="text-xs text-gray-600 uppercase font-semibold mb-0"><i class="icon ion-md-folder-open"></i>
+        {{postInfo?.categoryName}}</p>
+      <p class="text-xs text-gray-500 uppercase font-semibold mb-0"><i class="icon ion-md-alarm"></i> {{postInfo?.readingTime}} min read</p>
+    </div>
+    <p class="font-bold text-base mb-2 hover:text-red-700"><a
+        [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]">{{postInfo.title}}</a></p>
+    <p class="text-gray-700 text-sm hidden md:block">
+      {{postInfo.summary}}
     </p>
+    <p class="text-xs text-gray-500 text-right font-semibold mb-0"> {{postInfo?.createdDate | date}}</p>
   </div>
-  <div class="px-6 py-4">
+  <!-- <div class="p-4">
     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
-  </div>
+  </div> -->
 </div>

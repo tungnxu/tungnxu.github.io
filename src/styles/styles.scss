@@ -1,7 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-@import "quill-style/quill.bubble";
-@import "quill-style/quill.snow";
-body {
-    font-family: 'Nunito Sans', sans-serif;
+@charset 'utf-8';
+
+//Abstracts
+/*Abstracts: handles function, mixins, and variables*/
+@import "abstracts/__abstracts-dir";
+
+//Base Styles
+/*Base: animations, base, typography, and utilies.*/
+@import "base/__base-dir";
+
+//Components
+/*Components: have a single scss file for each individual component*/
+@import "components/__components-dir";
+
+//Layout
+/*Layout: Header, footer, grid, navigation*/
+@import "layout/__layouts-dir";
+
+router-outlet ~ * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
+
 
