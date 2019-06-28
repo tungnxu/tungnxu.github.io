@@ -19,7 +19,7 @@
     "start_url": "https://tungnxu.github.io",
     "display": "standalone",
     "orientation": "portrait",
-    "theme_color": "aliceblue",
+    "theme_color": "white",
     "background_color": "red",
     "serviceworker": {
       "src": "sw.js",
