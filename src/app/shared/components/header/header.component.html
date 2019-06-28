@@ -14,26 +14,22 @@
 </nav> -->
 
 <nav class="flex justify-between  items-center  flex-wrap bg-white py-2 lg:py-4 px-3" style="     box-shadow: 0 4px 12px 0 rgba(0,0,0,.05);
-position: fixed;
-right: 0;
-top: 0;
-left: 0;
-z-index: 1;">
+">
 <div class="flex  flex-1 justify-start items-center text-black ">
     <div class="block lg:hidden">
-        <button class="flex items-center px-3 py-2  rounded text-black hover:text-red ">
+        <button (click)="toggleSidebar()" class="flex items-center px-3 py-2  rounded text-black hover:text-red ">
           <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
         </button>
       </div>
   <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
   <a [routerLink]="[ '/' ]"> <span class="font-semibold text-xl tracking-tight">TNX</span></a>
 </div>
-  <div class="text-sm flex-1 justify-center">
+  <!-- <div class="text-sm flex-1 justify-center">
     <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-black hover:text-black mr-4">
       {{cat.categoryName}}
     </a>
   </div>
-  
+   -->
 
   <div class=" flex  flex-1 justify-end">
   

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModalGeneratorService, ModalOptions } from 'src/app/core/services/modal-generator.service';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { CategoryModel } from 'src/app/shared/models/categories.model';
+import { CategoryService } from 'src/app/core/mocks/categories_data';
+import Utils from 'src/app/shared/helpers/utils';
+import { LayoutService } from 'src/app/core/services/layout-service.service';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +15,23 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
 export class HomeComponent implements OnInit {
 
   // private item$: Observable<any>;
-  constructor(private modalGeneratorService: ModalGeneratorService) { 
+
+  public categories$: Observable<CategoryModel[]>;
+  constructor(private modalGeneratorService: ModalGeneratorService, private categoryService: CategoryService, private layoutService : LayoutService) { 
     // this.item$ = this.cloudFilestoreApiService.get('users');
   }
 
   ngOnInit() {
+    this.categories$ = this.categoryService.get();
   }
 
   addModal() {
     const modalOptions = new ModalOptions('BÀI VIẾT MỚI','Modal example body');
     this.modalGeneratorService.addModal(ModalComponent, modalOptions);
+  }
+
+  public showSlugSEO(str: string): string{
+    return str? Utils.slugify(str)+'-cat.': ""+'-cat.';
   }
 
   // public addItem(){
@@ -31,5 +42,9 @@ export class HomeComponent implements OnInit {
   //     username: 'email moi'
   //   })
   // }
+
+  public toggleSidebar() {
+    this.layoutService.toggleSidebar();
+  }
 
 }

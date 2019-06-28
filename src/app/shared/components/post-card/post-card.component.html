@@ -1,4 +1,4 @@
-<div *ngIf="postInfo" class="post-card-item flex md:block  rounded overflow-hidden shadow-lg " [ngStyle]="{'animation-delay': index * (.06) + 's'}">
+<div *ngIf="postInfo" class="post-card-item flex md:block  rounded overflow-hidden shadow-lg " [ngStyle]="{'animation-delay': index * (.03) + 's'}">
   <a [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]"> <img class="object-cover h-full w-48 md:h-auto md:w-full"
       [src]="postInfo.thumbnail ? postInfo.thumbnail : 'https://picsum.photos/341/213'"
       alt="Sunset in the mountains"></a>

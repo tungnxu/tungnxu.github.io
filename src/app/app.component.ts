@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { LayoutService } from './core/services/layout-service.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'authen-app';
-  constructor() {
+  constructor(private layoutService: LayoutService) {
+  } 
+  public toggleSidebar() {
+    this.layoutService.toggleSidebar();
   }
+
+  
+
 }

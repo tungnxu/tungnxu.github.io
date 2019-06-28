@@ -1,9 +1,9 @@
 {
-    "lang": "en",
+    "lang": "vi",
     "dir": "ltr",
-    "name": "Super Racer 3000",
-    "description": "The ultimate futuristic racing game from the future!",
-    "short_name": "Racer3K",
+    "name": "T-Journal",
+    "description": "Trở thành Front-end Developer | Tiêu Dao Journal",
+    "short_name": "T-Journal",
     "icons": [{
       "src": "icon/lowres.webp",
       "sizes": "64x64",
@@ -15,11 +15,11 @@
       "src": "icon/hd_hi",
       "sizes": "128x128"
     }],
-    "scope": "/racer/",
-    "start_url": "/racer/start.html",
-    "display": "fullscreen",
-    "orientation": "landscape",
-    "theme_color": "aliceblue",
+  
+    "start_url": "https://tungnxu.github.io",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "white",
     "background_color": "red",
     "serviceworker": {
       "src": "sw.js",

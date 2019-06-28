@@ -5,10 +5,22 @@ import Counter from './toolbar/counter'
 import ImageResize from 'quill-image-resize-module'
 import ImageInsert from './toolbar/imageInsert'
 
+import ImageBlot  from './toolbar/imageBlot';
+import { TaskerFigure } from './toolbar/TaskerFigure';
+import { FigureOptions } from './toolbar/FigureOptions';
+
+ImageBlot['blotName'] = 'imageBlot';
+ImageBlot['className'] = 'image-lazy';
+ImageBlot['tagName'] = 'img';
+
+Quill.register('formats/imageBlot', ImageBlot );
 
 Quill.register('modules/counter', Counter)
 Quill.register('modules/imageResize', ImageResize)
 Quill.register('modules/imageInsert', ImageInsert)
+
+Quill.register(TaskerFigure);
+// Quill.register('modules/figureOptions', FigureOptions);
 
 @Component({
   selector: 'tquill-editor',
@@ -112,7 +124,49 @@ export class TquillEditorComponent implements OnInit {
       // console.log('User cursor is not in editor' + range);
     }
     var value = prompt('What is the image URL');
-    if(value)  this.editorInstance.insertEmbed(range, 'image', value, 'user');
+    if(value)  this.editorInstance.insertEmbed(range, 'imageBlot', value, 'user');
+
+    // if(value)  this.editorInstance.insertEmbed(range, 'imageBlot', 
+    // {
+    //   src: value, // any url
+    //   custom: 'hello-' + Date.now(), // any custom attr
+    // }
+    // , 'user');
+   
+    // this.editorInstance.insertText(0, `<b>Hello</b>`,'normal', 'user');
+    // let imgBuild = "<figure></figure>"
+    // this.editorInstance.pasteHTML( imgBuild, 'user');
+    // this.modelChange.emit(this.model);
+    // this.editorInstance.setText('Hello\n');
+  }
+
+  public insertImageCap(): void {
+    event.preventDefault();
+
+    var range = this.editorInstance.getSelection();
+    if (range) {
+      if (range.length == 0) {
+        // console.log('User cursor is at index', range.index);
+      } else {
+        var text = this.editorInstance.getText(range.index, range.length);
+        // console.log('User has highlighted: ', text);
+      }
+    } else {
+      range = this.editorInstance.scroll.length();
+      // console.log('User cursor is not in editor' + range);
+    }
+    var value = prompt('What is the image URL');
+    if(value)  this.editorInstance.insertEmbed(range, 'taskerFigure', {
+       url : value,
+       name: 'Caption of image'
+    }, 'user');
+
+    // if(value)  this.editorInstance.insertEmbed(range, 'imageBlot', 
+    // {
+    //   src: value, // any url
+    //   custom: 'hello-' + Date.now(), // any custom attr
+    // }
+    // , 'user');
    
     // this.editorInstance.insertText(0, `<b>Hello</b>`,'normal', 'user');
     // let imgBuild = "<figure></figure>"
