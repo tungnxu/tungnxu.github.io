@@ -17,7 +17,7 @@
     }],
   
     "start_url": "https://tungnxu.github.io",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait",
     "theme_color": "aliceblue",
     "background_color": "red",
