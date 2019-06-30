@@ -9,6 +9,27 @@
             type="text" name="title" id="title" [(ngModel)]="newPost.title" >
           <p class="text-right text-right text-gray-500 text-sm py-1"> {{myDomain}}{{showSlugSEO(newPost.title)}}{{slugPost}}</p>
         </div>
+
+        <!-- <div class="flex -mx-3">
+        <div class="w-1/2 px-3">
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="postSummary">Tóm tắt</label>
+              <textarea
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text" name="summary" id="summary" rows="3" [(ngModel)]="newPost.summary"></textarea>
+            </div>
+        </div>
+        <div class="w-1/2 px-3">
+          <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="">Phân loại</label>
+              <label *ngFor="let cat of categories">
+                <input type="radio" [(ngModel)]="selectedCat" name="clap" [value]="cat.categorySlug">
+                {{ cat.categoryName }}
+              </label>
+            </div>
+        </div>
+      </div> -->
+
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="body">Nội dung bài viết</label>
           <tquill-editor [placeholder]="'Write your Epic'" [model]="newPost.body" (modelChange)="changeContent($event)"></tquill-editor>
@@ -22,7 +43,7 @@
           <label class="block text-gray-700 text-sm font-bold mb-2" for="postSummary">Tóm tắt</label>
           <textarea
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text" name="summary" id="summary" rows="3" [(ngModel)]="newPost.summary"></textarea>
+            type="text" name="summary" id="summary" rows="6" [(ngModel)]="newPost.summary"></textarea>
         </div>
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="thumbnail">Ảnh Thumnail</label>
@@ -38,6 +59,14 @@
             {{ cat.categoryName }}
           </label>
         </div>
+
+        <!-- <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="">Upload anh</label>
+          <input #file type="file" accept='image/*' multiple  (change)="preview(file.files)" />
+          
+          <img *ngFor="let item of urls" [src]="item" height="200"  >
+        </div> -->
+
         <div class="mb-4">
             <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -48,4 +77,4 @@
     </div>
   </form>
 
-  {{newPost | json  }}
+  <!-- {{newPost | json  }} -->

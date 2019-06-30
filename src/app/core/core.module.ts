@@ -25,8 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-  ],
-  providers: [AuthenticationService]
+  ]
 
 })
 export class CoreModule extends EnsureModuleLoadedOnceGuard {

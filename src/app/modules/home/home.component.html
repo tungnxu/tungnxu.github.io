@@ -13,7 +13,6 @@
     </div>
     </div>
     <div class=" text-center px-2 md:px-4">
-        <button (click)="toggleSidebar()">show</button>
       <p class="text-gray-600 text-sm  mb-0">Now see what I have:</p>
       <ul class="flex flex-no-wrap overflow-x-auto lg:block p-2">
         <li class="px-2 border-r lg:border-0" *ngFor="let cat of categories$ | async" > <a  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block whitespace-no-wrap lg:inline-block lg:mt-0 text-black hover:text-red-700 text-base">

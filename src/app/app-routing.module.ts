@@ -11,7 +11,7 @@ const routes: Routes = [
       },
       { path: '', loadChildren: './modules/auth/auth.module#AuthModule' },
       { path: '', loadChildren: './modules/article/article.module#ArticleModule' },
-      { path: 'manage', loadChildren: './modules/management/management.module#ManagementModule'}
+      { path: 'manage', loadChildren: './modules/management/management.module#ManagementModule' , canActivate: [AuthGuard]}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

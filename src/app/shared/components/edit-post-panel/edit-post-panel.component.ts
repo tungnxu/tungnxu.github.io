@@ -114,4 +114,31 @@ export class EditPostPanelComponent implements OnInit {
     this.numOfWord = $event.words;
   }
 
+  public imagePath;
+  imgURL: any;
+  public message: string;
+
+  urls: any[] = [];
+
+
+  public preview(files) {
+    if (files.length === 0)
+      return;
+ 
+    // var mimeType = files[0].type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   // this.message = "Only images are supported.";
+    //   return;
+    // }
+ 
+    for (let i = 0; i < files.length; i++) {
+      let reader = new FileReader();
+      reader.readAsDataURL(files[i]); 
+      reader.onload = (_event) => { 
+        this.urls.push(reader.result); 
+      }
+    }
+    
+  }
+
 }

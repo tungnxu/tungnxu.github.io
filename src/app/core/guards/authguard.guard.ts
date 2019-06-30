@@ -15,12 +15,11 @@ export class AuthGuard implements CanActivate {
 
     // tslint:disable-next-line:max-line-length
     canActivate(route: import ('@angular/router').ActivatedRouteSnapshot, state: import ('@angular/router').RouterStateSnapshot): boolean | import ('@angular/router').UrlTree | import ('rxjs').Observable<boolean | import ('@angular/router').UrlTree> | Promise<boolean | import ('@angular/router').UrlTree> {
-        const currentUser = this.authenticationService.currentUserValue;
-        if (currentUser) {
+        if (this.authenticationService.isAdministrator()) {
             return true;
         }
         // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
         return false;
     }
 }

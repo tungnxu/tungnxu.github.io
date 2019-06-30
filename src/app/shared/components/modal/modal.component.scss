@@ -1,5 +1,5 @@
 .modal-overlay {
-  animation: fadeIn .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+  // animation: fadeIn .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
   background: rgba(0, 0, 0, 0.34);
   z-index: 10;
 
@@ -12,7 +12,7 @@
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .05);
 
   &.hide {
-    animation: fadeOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    // animation: fadeOut .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
   }
 }
 

@@ -13,7 +13,7 @@
 
 </nav> -->
 
-<nav class="flex justify-between  items-center  flex-wrap bg-white py-2 lg:py-4 px-3" style="     box-shadow: 0 4px 12px 0 rgba(0,0,0,.05);
+<nav class="flex justify-between  items-center  flex-wrap bg-white py-2 lg:py-2 px-3" style="     box-shadow: 0 4px 12px 0 rgba(0,0,0,.05);
 ">
 <div class="flex  flex-1 justify-start items-center text-black ">
     <div class="block lg:hidden">
@@ -32,10 +32,39 @@
    -->
 
   <div class=" flex  flex-1 justify-end">
-  
-    <div>
-      <a [routerLink]="['/', 'manage','new-post']"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-teal-500 hover:bg-white "><i class="icon ion-md-brush"></i> Viết bài</a>
+    <div [hidden]="user" class="flex items-center header-guess">
+        <button  [hidden]="user" id="googleBtn" >Log in with Google</button>
+        <button  [hidden]="user" id="facebookBtn" (click)="loginFB()">Log in with Facebook</button>
     </div>
+    <div *ngIf="user" class="flex items-center header-user">
+        <!-- <a [routerLink]="['/', 'manage','new-post']"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-teal-500 hover:bg-white "><i class="icon ion-md-brush"></i> Viết bài</a> -->
+        <img class="h-10 w-10 rounded-full" [src]="user?.avatar" alt="">
+        <p class=" hidden md:block text-xs text-gray-600 font-semibold pl-2">{{user?.name}} </p>
+        <i class="icon ion-md-arrow-dropdown text-gray-600 pl-2"></i>
+        <!-- <a  (click)="logout()">Dang xuat</a> -->
+      </div>
+    <div>
+    </div>
+  </div>
+</nav>
+
+<nav id="category-navigation" class="flex items-center category-navigation bg-white">
+    <button (click)="toggleSidebar()" class="flex items-center px-3 py-2  rounded text-black hover:text-red ">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      </button>
+  <div class="flex text-sm w-full justify-start  md:justify-center overflow-auto">
+    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-7 00 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
   </div>
 </nav>
 
