@@ -8,14 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:800|Clicker+Script" rel="stylesheet" type="text/css">
   <style>
-    *{
- box-sizing: border-box;
+    * {
+      box-sizing: border-box;
     }
+
     body {
       padding-top: 48px;
       margin: 0;
-     
+
     }
 
     body header {
@@ -28,9 +30,9 @@
     }
 
 
-    body.home-page #main-navigation{
+    body.home-page #main-navigation {
       background: transparent;
-      color: white;
+      color: hsla(0, 0%, 100%, 0.85);
       box-shadow: none;
     }
 
@@ -41,7 +43,7 @@
     #header {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
       text-align: center;
-      padding: 128px 0;
+      padding: 111px 0;
       margin: 0;
       position: relative;
       overflow: hidden;
@@ -58,7 +60,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: #631111;
+      background: #350b0b;
       opacity: 0.4;
 
     }
@@ -78,23 +80,40 @@
     }
 
     #header h2.name {
-      font-size: 18px;
+      font-family: 'Clicker Script', cursive;
+      font-size: 28px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
       margin: 13px 0;
-      font-weight: 600;
+      font-weight: 800;
       color: white;
     }
 
     #header p.role {
-      font-size: 16px;
+      font-size: 18px;
       color: white;
       margin: 0;
       text-transform: uppercase;
     }
 
+    #header p.role span {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
     #header p.sologan {
       font-size: 16px;
-      color: white;
+      color: hsla(0, 0%, 100%, 0.88);
       margin: 0;
+    }
+
+    #header p i {
+      color: hsla(0, 0%, 100%, 0.88);
+      font-size: 26px;
+      margin: 0 .25rem;
+    }
+
+    #header p i:hover {
+      color: white;
     }
 
   </style>
@@ -193,17 +212,21 @@
     <div class="header-content">
       <img class="avatar" src="assets/img/me_ava.jpg" alt="">
       <h2 class="name">TungNXU</h2>
-      <p class="role">Front-end Dev - Designer</p>
+      <p class="role">I'm <span>Front-end Dev - Designer</span></p>
       <p class="sologan">From Developer to Engineer, Learning, Coding Life</p>
+      <p><a href="#"> <i class="icon ion-logo-skype "></i> </a>
+        <a href="#">  <i class="icon ion-logo-facebook "></i></a>
+          <a href="#"> <i class="icon ion-logo-github "></i></a></p>
     </div>
   </header>
   <script>
-  if (window.location.pathname !== "/"){
-    document.getElementsByTagName('body')[0].classList.remove('home-page');
-  }
+    if (window.location.pathname !== "/") {
+      document.getElementsByTagName('body')[0].classList.remove('home-page');
+    }
+
   </script>
   <app-root></app-root>
-  
-<script src="runtime-es2015.6adcb24616d21716069f.js" type="module"></script><script src="polyfills-es2015.49fbc9903f8bc8115551.js" type="module"></script><script src="runtime-es5.1519f91e3502d6a5839e.js" nomodule></script><script src="polyfills-es5.221130387a6f4dcf0fb4.js" nomodule></script><script src="scripts.9cbab4b6b4d85d21d142.js"></script><script src="main-es2015.2bdb1932e0a53b8f4024.js" type="module"></script><script src="main-es5.91e9c1513e4b91c0c53a.js" nomodule></script></body>
+
+<script src="runtime-es2015.85ee9aaeef23452e18c8.js" type="module"></script><script src="polyfills-es2015.49fbc9903f8bc8115551.js" type="module"></script><script src="runtime-es5.7273fa550090c0d6c512.js" nomodule></script><script src="polyfills-es5.221130387a6f4dcf0fb4.js" nomodule></script><script src="scripts.9cbab4b6b4d85d21d142.js"></script><script src="main-es2015.6213188a58d2cacebea2.js" type="module"></script><script src="main-es5.39e4d2cd0b9bd0665d0e.js" nomodule></script></body>
 
 </html>
