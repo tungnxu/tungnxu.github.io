@@ -5,34 +5,18 @@
     "description": "Trở thành Front-end Developer | Tiêu Dao Journal",
     "short_name": "T-Journal",
     "icons": [{
-      "src": "icon/lowres.webp",
+      "src": "assets/icon/icon-64x64",
       "sizes": "64x64",
-      "type": "image/webp"
+      "type": "image/png"
     },{
-      "src": "icon/lowres.png",
-      "sizes": "64x64"
-    }, {
-      "src": "icon/hd_hi",
-      "sizes": "128x128"
+      "src": "assets/icon/icon-128x128",
+      "sizes": "128x128 512x512",
+      "type": "image/png"
     }],
   
-    "start_url": "https://tungnxu.github.io",
+    "start_url": "/",
     "display": "standalone",
     "orientation": "portrait",
-    "theme_color": "white",
-    "background_color": "red",
-    "serviceworker": {
-      "src": "sw.js",
-      "scope": "/racer/",
-      "update_via_cache": "none"
-    },
-    "screenshots": [{
-      "src": "screenshots/in-game-1x.jpg",
-      "sizes": "640x480",
-      "type": "image/jpeg"
-    },{
-      "src": "screenshots/in-game-2x.jpg",
-      "sizes": "1280x920",
-      "type": "image/jpeg"
-    }]
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff"
   }
