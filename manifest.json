@@ -1,9 +1,9 @@
 {
     "lang": "vi",
     "dir": "ltr",
-    "name": "T-Journal",
-    "description": "Trở thành Front-end Developer | Tiêu Dao Journal",
-    "short_name": "T-Journal",
+    "name": "TNX-Port",
+    "description": "Trở thành Front-end Developer | TNX-Portfolio",
+    "short_name": "TNX-Port",
     "icons": [{
       "src": "assets/icon/icon-64x64.png",
       "sizes": "64x64",
