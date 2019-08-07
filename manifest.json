@@ -5,11 +5,11 @@
     "description": "Trở thành Front-end Developer | Tiêu Dao Journal",
     "short_name": "T-Journal",
     "icons": [{
-      "src": "assets/icon/icon-64x64",
+      "src": "assets/icon/icon-64x64.png",
       "sizes": "64x64",
       "type": "image/png"
     },{
-      "src": "assets/icon/icon-128x128",
+      "src": "assets/icon/icon-128x128.png",
       "sizes": "128x128 512x512",
       "type": "image/png"
     }],
