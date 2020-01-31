@@ -11,7 +11,7 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
   styleUrls: ['./article-list-page.component.scss']
 })
 export class ArticleListPageComponent implements OnInit {
-  @ViewChild('postList') public postList:ComponentRef<any> ;
+  @ViewChild('postList', { static: false }) public postList:ComponentRef<any> ;
   private pathName: string;
   public codeQuery: string;
   public category: CategoryModel;

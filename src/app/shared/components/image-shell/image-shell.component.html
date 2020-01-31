@@ -1,3 +1,6 @@
-<div class="wrapper-img" [ngClass]="_class">
-<img class="inner-img " [ngClass]="_class" [class.skeleton]="!imageLoaded" [src]="_src" [alt]="_alt" (load)="_imageLoaded()"  />
+<div *ngIf="mode == 1" class="wrapper-img" [ngClass]="_class" [ngStyle]="{ 'width': _width , 'height': _height }">
+<img class="inner-img "  [ngClass]="_class" [class.skeleton]="!imageLoaded" [src]="_src" [alt]="_alt" (load)="_imageLoaded()"  />
 </div>
+
+<a *ngIf="mode == 2" class="wrapper-bg-img" [ngClass]="_class" [ngStyle]="{ 'width': _width , 'height': _height,  'background-image': 'url(' + _src + ')' }">
+</a>

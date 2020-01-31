@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { PostModel } from '../../models/posts.model';
 import { CategoryModel } from '../../models/categories.model';
 import { CloudFilestoreApiService } from 'src/app/core/http/cloud-filestore-api.service';
@@ -15,11 +15,12 @@ enum PostMode {
 @Component({
   selector: 'edit-post-panel',
   templateUrl: './edit-post-panel.component.html',
-  styleUrls: ['./edit-post-panel.component.scss']
+  styleUrls: ['./edit-post-panel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditPostPanelComponent implements OnInit {
   public modalOptions: ModalOptions;
-  @Input() public newPost: PostModel = {};
+  public newPost: PostModel = {};
   @Output() public doneNow : EventEmitter<any> = new EventEmitter<any>();
   public categories: CategoryModel[];
   public selectedCat: string;
@@ -36,12 +37,17 @@ export class EditPostPanelComponent implements OnInit {
     private categoriesService: CategoryService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalGeneratorService: ModalGeneratorService) {
+    private modalGeneratorService: ModalGeneratorService,
+    private ref: ChangeDetectorRef) {
+
     this.loadCategory();
 
   }
 
   ngOnInit() {
+    if (this.modalOptions && this.modalOptions.data){
+     this.newPost = this.modalOptions.data;
+    }
     this.myDomain = window.location.protocol + '//' + window.location.host + '/';
     if (this.newPost.id) {
       console.log(this.newPost.id)
@@ -53,9 +59,18 @@ export class EditPostPanelComponent implements OnInit {
       var minutes = dateObj.getUTCMinutes();
       this.slugPost = minutes + Math.floor(100000 + Math.random() * 900000).toString().slice(-4);
     }
+    this.ref.detectChanges();
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    
+  }
+  
+
   onSubmit() {
+    this.ref.detectChanges();
     const postPayload: PostModel = {
       ...this.newPost,
       slug: this.slugPost,
@@ -78,6 +93,7 @@ export class EditPostPanelComponent implements OnInit {
       console.log("tao bai viet mowis thanh cong" + res);
       this.router.navigate(['/' + this.showSlugSEO(this.newPost.title) + this.slugPost], { relativeTo: this.route });
       this.doneNow.emit();
+      this.closePopIfPop();
     }).catch(reject => {
       console.log("bi tu choi" + reject);
     })
@@ -89,6 +105,7 @@ export class EditPostPanelComponent implements OnInit {
       console.log("sửa bài thành công" + res);
       this.router.navigate(['/' + this.showSlugSEO(this.newPost.title) + this.slugPost], { relativeTo: this.route });
       this.doneNow.emit();
+      this.closePopIfPop();
     }).catch(reject => {
       console.log("bi tu choi" + reject);
     })
@@ -139,6 +156,12 @@ export class EditPostPanelComponent implements OnInit {
       }
     }
     
+  }
+
+  public closePopIfPop() : void {
+    if (this.modalOptions) {
+      this.modalGeneratorService.removeModal();
+    }
   }
 
 }

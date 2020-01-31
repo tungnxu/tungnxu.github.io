@@ -1,0 +1,35 @@
+<div class="block md:flex mb-4  md:-mx-3 items-center">
+    <div class=" w-full  md:w-1/3 md:mx-3">
+      <app-image-shell [width]="'auto'" [height]="'238px'" [class]="'rounded'" [src]="'https://picsum.photos/400/800'"></app-image-shell>
+    </div> 
+    <div *ngIf="!user" class=" w-full  md:w-2/3 md:mx-3">
+      <div  class="text-center">
+          <h1 class="text-gray-800 text-2xl font-bold uppercase my-3">Login</h1>
+          <p class="text-gray-600 text-base">
+            If you're not admin of this blog. No need to login, you still read all my posts. Thanks!
+          </p>
+        </div>
+        <div class="block md:flex py-4 justify-between">
+            <button class="w-full my-1 mx-1 flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-900 focus:outline-none  font-semibold text-base py-2 px-1 rounded" id="googleBtn" >
+            <img class="w-4 h-4 mr-2" src="assets/img/google_logo.svg" alt="" srcset=""> 
+             <span>Log in with Google</span> 
+          </button>
+        <button class="w-full my-1 mx-1 bg-blue-700 hover:bg-blue-800 text-white font-semibold focus:outline-none text-base py-2 px-1 rounded"  id="facebookBtn"  (click)="loginFB()" ><i class="icon ion-logo-facebook pr-2"></i>Or Facebook</button>
+        
+        </div>
+    </div> 
+
+    <div *ngIf="user" class=" w-full  md:w-2/3 md:mx-3">
+      <div  class="text-center">
+          <h1 class="text-gray-800 text-2xl font-bold uppercase my-3">Hello, {{user?.name}}</h1>
+          <p class="text-gray-600 text-base">Have a good day !</p>
+        </div>
+        <div class="block md:flex py-4 justify-between">
+            <a *ngIf="authenticationService.isAdministrator()" (click)="closeModal()" [routerLink]="['/', 'manage','new-post']"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-teal-500 hover:bg-white "><i class="icon ion-md-brush"></i> Viết bài</a>
+        <button class="w-full my-1 mx-1 bg-white hover:bg-blue-800 border-gray-700 text-gray-800 font-semibold focus:outline-none text-base py-2 px-1 rounded"  id="facebookBtn"  (click)="logout()" ><i class="icon ion-logo-facebook pr-2"></i>Logout</button>
+        </div>
+    </div> 
+    
+  </div>
+
+

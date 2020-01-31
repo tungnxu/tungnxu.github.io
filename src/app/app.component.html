@@ -1,11 +1,19 @@
-
 <ngx-loading-bar [includeSpinner]="true"></ngx-loading-bar>
 <aside id="sidebar" (click)="toggleSidebar()">
-    <div class="app-menu">
-        
-    </div>
+  <div class="app-menu p-2">
+    <p class="mt-5 text-xs text-gray-600 uppercase font-semibold flex justify-between items-center">
+            Phân loại<i class="icon ion-md-bookmarks text-lg"></i> 
+    </p>
+    <a *ngFor="let cat of categories$ | async" [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]"
+      [queryParams]="{src: 'toCat'+ cat.categorySlug }" class="block text-base py-2"
+      [class.text-red-700]="cat.categorySlug == codeQuery">
+      {{cat.categoryName}}
+    </a>
+
+    <p class="mt-5 text-xs text-gray-600 uppercase font-semibold flex justify-between items-center">
+            Thiết lập<i class="icon ion-md-switch text-lg"></i> 
+    </p>
+    <app-stype-panel></app-stype-panel>
+  </div>
 </aside>
 <router-outlet></router-outlet>
-
-
-

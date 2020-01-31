@@ -3,11 +3,12 @@
   <div class="mx-auto max-w-5xl py-0 md:py-5"> 
     <div class="block md:flex mb-4  md:-mx-3 items-center">
         <div class=" w-full  md:w-1/2 md:mx-3">
-        <img class="rounded-none md:rounded-lg" [src]="post?.thumbnail" alt="" srcset="">
+        <!-- <img class="rounded-none md:rounded-lg" [src]="post?.thumbnail" alt="" srcset=""> -->
+        <app-image-shell [width]="'auto'" [height]="'289px'" [class]="'rounded-none md:rounded-lg'" [src]="post?.thumbnail"></app-image-shell>
         </div>
         <div class=" w-full md:w-1/2 md:mx-3 px-3">
         <p class="text-sm text-gray-600 uppercase font-semibold py-2 mb-0"><i class="icon ion-md-folder-open"></i> {{post?.categoryName}}</p>
-        <p class="text-2xl font-semibold">{{post?.title}}</p>
+        <h1 class="text-2xl font-semibold">{{post?.title}}</h1>
         <p class="font-semibold text-gray-600">{{post?.summary}}</p>
         <div class="flex my-5">
             <p class="text-xs text-gray-500 uppercase font-semibold mr-2"><i class="icon ion-md-alarm"></i> {{post?.readingTime}} MIN READ</p>
@@ -20,7 +21,7 @@
 </div>
 <div class="body-container mx-3 my-5">
     <div class="mx-auto max-w-3xl   py-5"> 
-        <div [innerHtml]="post?.body">
+        <div class="content-wrapper" [innerHtml]="contentHtml">
           </div>
     </div>
 </div>

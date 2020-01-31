@@ -1,23 +1,26 @@
-<div *ngIf="postInfo" class="post-card-item flex md:block  rounded overflow-hidden shadow-lg " [ngStyle]="{'animation-delay': index * (.03) + 's'}">
-  <a [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]"> <img class="object-cover h-full w-48 md:h-auto md:w-full"
+<!-- <div *ngIf="postInfo" class="post-card-item flex md:block  rounded overflow-hidden shadow-md " [ngStyle]="{'animation-delay': index * (.03) + 's'}"> -->
+  <a class="w-48 md:h-auto md:w-full" [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]" [attr.aria-label]="'Đọc thêm về ' + postInfo.title"> 
+    <app-image-shell [width]="'auto'" [height]="'165px'" [class]="'object-cover h-full w-48 md:h-auto md:w-full'" [src]="postInfo.thumbnail ? postInfo.thumbnail : 'https://picsum.photos/341/213'"></app-image-shell>
+    <!-- <img class="object-cover h-full w-48 md:h-auto md:w-full"
       [src]="postInfo.thumbnail ? postInfo.thumbnail : 'https://picsum.photos/341/213'"
-      alt="Sunset in the mountains"></a>
+      alt="Sunset in the mountains"> -->
+    </a>
   <div class="p-4 w-full">
     <div class="flex justify-between mb-2">
-      <p class="text-xs text-gray-600 uppercase font-semibold mb-0"><i class="icon ion-md-folder-open"></i>
+      <p class="text-xs text-gray-700 uppercase font-semibold mb-0"><i class="icon ion-md-folder-open"></i>
         {{postInfo?.categoryName}}</p>
-      <p class="text-xs text-gray-500 uppercase font-semibold mb-0"><i class="icon ion-md-alarm"></i> {{postInfo?.readingTime}} min read</p>
+      <p class="text-xs text-gray-700 uppercase font-semibold mb-0"><i class="icon ion-md-alarm"></i> {{postInfo?.readingTime}} min read</p>
     </div>
     <p class="font-bold text-base mb-2 hover:text-red-700"><a
-        [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]">{{postInfo.title}}</a></p>
-    <p class="text-gray-700 text-sm hidden md:block">
+        [routerLink]="[ '/' + showSlugSEO(postInfo.title) + postInfo.slug ]" [attr.aria-label]="'Đọc thêm về ' + postInfo.title">{{postInfo.title}}</a></p>
+    <p class="text-gray-800 text-sm hidden md:block">
       {{postInfo.summary}}
     </p>
-    <p class="text-xs text-gray-500 text-right font-semibold mb-0"> {{postInfo?.createdDate | date}}</p>
+    <p class="text-xs text-gray-700 text-right font-semibold mb-0"> {{postInfo?.createdDate | date}}</p>
   </div>
   <!-- <div class="p-4">
     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
     <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
   </div> -->
-</div>
+<!-- </div> -->

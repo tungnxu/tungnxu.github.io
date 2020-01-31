@@ -1,0 +1,31 @@
+.style-font-theme{
+    margin-bottom: 1rem;
+    .font-option{
+      display: flex;
+      ul{
+        list-style: none;
+        display: flex;
+        li{
+          margin: 0 .25rem;
+          width: 40px;
+          height: 40px;
+          background: #fafafa;
+          border-radius: 50%;
+          line-height: 40px;
+          text-align: center;
+          border: 1px solid white;
+          cursor: pointer;
+          font-size: 13px;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: darkslategray;
+          &.active{
+            border: 1px solid gray;
+          }
+          &:hover{
+            background: darken(#fafafa, 5)
+          }
+        }
+      }
+    }
+  }

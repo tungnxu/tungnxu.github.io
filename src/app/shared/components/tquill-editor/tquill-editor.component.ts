@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import * as hljs from 'highlight.js';
 import Quill, { Delta } from 'quill';
+
 
 import Counter from './toolbar/counter'
 import ImageResize from 'quill-image-resize-module'
@@ -8,6 +10,10 @@ import ImageInsert from './toolbar/imageInsert'
 import ImageBlot  from './toolbar/imageBlot';
 import { TaskerFigure } from './toolbar/TaskerFigure';
 import { FigureOptions } from './toolbar/FigureOptions';
+
+// hljs.configure({
+//   languages: ['javascript', 'html', 'bash']
+// });
 
 ImageBlot['blotName'] = 'imageBlot';
 ImageBlot['className'] = 'image-lazy';
@@ -44,9 +50,12 @@ export class TquillEditorComponent implements OnInit {
     this.editorInstance = editorInstance;
   }
 
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit() {
+    
   }
 
   public onModelChange(html: string) {

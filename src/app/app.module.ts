@@ -8,6 +8,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { CoreModule } from './core/core.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     LoadingBarModule,
     // AngularFireStorageModule,
     // AngularFireAuthModule,
-
+    SharedModule,
     CoreModule,
   ],
   providers: [

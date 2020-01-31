@@ -1,0 +1,13 @@
+<div class="style-font-theme">
+    <p class="text-xs text-gray-600">Kiểu chữ <span class="font-semibold text-base text-gray-900">Roboto</span></p>
+    <div class="font-option">
+      <p class="mr-4 text-2xl font-bold text-gray-800">Aa</p>
+      <ul>
+        <li *ngFor="let item of fontList" (click)="changeFont(item)" [class.active]="_layoutService.currentFont?.fontName == item.fontName">{{item.fontName | slice:0:2}}</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="style-font-theme">
+      <p class="text-xs text-gray-600">Giao diện <span class="font-semibold text-base text-gray-900">Lighting</span></p>
+  </div>

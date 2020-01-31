@@ -1,4 +1,4 @@
-.post-card-item {
+:host(.post-card-item) {
     // opacity: 0;
     animation: .4s cubic-bezier(.25, .25, .25, 1.25) both  fade-in;
   }

@@ -2,6 +2,8 @@ import { Injectable, ComponentFactoryResolver, Injector, EmbeddedViewRef, Applic
 export class ModalOptions {
     title: string;
     data: any;
+    template?: any;
+    css?: string[] = ['modal-lg'];
     acceptCallback?: (close: () => any) => any;
     cancelCallback?: (close: () => any) => any;
   
@@ -38,8 +40,8 @@ export class ModalGeneratorService {
       .rootNodes[0] as HTMLElement;
     
     document.body.appendChild(domElem);
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('overflow-hidden');
+    // const body = document.getElementsByTagName('body')[0];
+    // body.classList.add('overflow-hidden');
 
   }
 
@@ -47,8 +49,8 @@ export class ModalGeneratorService {
     if(this.componentRef) {
       this.appRef.detachView(this.componentRef.hostView);
       this.componentRef.destroy();
-      const body = document.getElementsByTagName('body')[0];
-      body.classList.remove('overflow-hidden');
+      // const body = document.getElementsByTagName('body')[0];
+      // body.classList.remove('overflow-hidden');
     }
   }
 }

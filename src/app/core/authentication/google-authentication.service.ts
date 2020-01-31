@@ -4,6 +4,7 @@ import { Users } from 'src/app/shared/models/users.model';
 import { AuthenticationService } from './authentication.service';
 import { md5 } from 'src/app/shared/helpers/md5';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+import { ModalGeneratorService } from '../services/modal-generator.service';
 declare const gapi: any;
 
 @Injectable({
@@ -12,7 +13,7 @@ declare const gapi: any;
 export class GoogleAuthenticationService {
 
 
-  constructor(private authenticationService : AuthenticationService) { }
+  constructor(private authenticationService : AuthenticationService, private modalGeneratorService: ModalGeneratorService) { }
 
   public auth2: any;
 
@@ -34,14 +35,14 @@ export class GoogleAuthenticationService {
         // this.loadingBar.start();
        
         let profile = googleUser.getBasicProfile();
-        console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('access_token || ' + googleUser.getAuthResponse().access_token);
-        console.log('expires_in || ' + googleUser.getAuthResponse().expires_in);
-        console.log('expires_at || ' + googleUser.getAuthResponse().expires_at);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        // console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        // console.log('access_token || ' + googleUser.getAuthResponse().access_token);
+        // console.log('expires_in || ' + googleUser.getAuthResponse().expires_in);
+        // console.log('expires_at || ' + googleUser.getAuthResponse().expires_at);
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
 
         const currentUser: Users = {
           id: profile.getId(),
@@ -51,7 +52,7 @@ export class GoogleAuthenticationService {
           accessToken: googleUser.getAuthResponse().access_token
         }
         this.authenticationService.setCurrentUser(currentUser);
-        
+        location.reload();
         // this.loadingBar.complete();
       
        

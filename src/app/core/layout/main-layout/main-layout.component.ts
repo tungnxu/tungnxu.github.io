@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, HostListener, ViewEncapsulation } from '@angular/core';
 import { fadeAnimation } from 'src/app/shared/animations/animations';
 import { DOCUMENT } from '@angular/common';
 import { LayoutService } from '../../services/layout-service.service';
@@ -8,6 +8,7 @@ import { LayoutService } from '../../services/layout-service.service';
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [fadeAnimation] 
 })
 export class MainLayoutComponent implements OnInit {

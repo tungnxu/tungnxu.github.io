@@ -25,152 +25,8 @@ router-outlet ~ * {
     width: 100%;
 }
 
-// aside{
-//     position: fixed;
-//     left: 0;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     overflow: hidden;
-//     pointer-events: none;
-//     z-index: 150;
-
-//     &.animation {
-//         .app-menu{
-//             transition: all 130ms ease-in;
-//         }
-//     }
-
-//     &:after {
-//         content: '';
-//         display: block;
-//         position: absolute;
-//         left: 0;
-//         top: 0;
-//         width: 100%;
-//         height: 100%;
-//         background: rgba(0,0,0,0.4);
-//         opacity: 0;
-//         will-change: opacity;
-//         pointer-events: none;
-//         transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
-//     }
-
-//     .app-menu{
-//         background-color: #fff;
-//         color: #fff;
-//         position: relative;
-//         max-width: 400px;
-//         width: 62%;
-//         height: 100%;
-//         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-//         -webkit-transform: translateX(-103%);
-//                 transform: translateX(-103%);
-//         display: flex;
-//         flex-direction: column;
-//         will-change: transform;
-//         z-index: 160;
-//         pointer-events: auto;  
-//     }
-
-//     &.animation {
-//         .app-menu{
-//             transition: all 130ms ease-in;
-//         }
-//     }
-
-//     &.show {
-//         &.animation {
-//             .app-menu{
-//                 transition: all 330ms ease-out;
-//             }
-//         }
-//         pointer-events: auto;
-//         &:after {
-//             opacity: 1;
-//             pointer-events: auto;
-//         }
-
-//         .app-menu{
-//             -webkit-transform: none;
-//             transform: none;
-//         }
-//     }
-// }
 
 
-aside{
-    display: block;
-    position: fixed;
-    left: 0;
-    top:0;
-    bottom: 0;
-    background: white;
-    width: 220px;
-    transform: translateX(-100%);
-    will-change: transform;
-    z-index: 2;
-    &.show {
-        transform: none;
-        &.animation{
-            transition: transform 230ms ease-out; 
-        }
-       
-    }
-    &.animation{
-        transition: transform 130ms  ease-in;
-    }
-
-   
-
-    
-}
-
-app-main-layout{
-    .app-header ,.app-body-layout{
-        transform: none;
-        // will-change: transform;
-        }
-    &.animation{
-        .app-header ,.app-body-layout{
-            transition: transform 130ms  ease-in;
-            }
-       
-    }
-   
-   
-    &.show {
-        &.animation{
-            .app-header, .app-body-layout{
-            transition: transform 230ms ease-out; 
-            }
-        }
-        .app-header,  .app-body-layout{
-            transform: translateX(220px);
-        }
-        
-        &:after {
-            opacity: 1;
-            // pointer-events: auto;
-        }
-    }
-
-    &:after {
-        z-index: 1;
-        content: '';
-        display: block;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.3);
-        opacity: 0;
-        will-change: opacity;
-        pointer-events: none;
-        transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
-    }
-}
 
 .app-header{
     // position: fixed;
@@ -180,3 +36,51 @@ app-main-layout{
     // z-index: 1;
     display: block;
     }
+
+
+    img.lazy-image{
+        opacity: 0;
+        background: #fafafa;
+    }
+    .fade{
+        animation: fadeIn .6s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        cursor: zoom-in;
+    }
+    
+    @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+      
+        100% {
+          opacity: 1;
+        }
+      }
+
+
+html.transition p ,
+html.transition span ,
+html.transition h1 ,html.transition h2 ,html.transition h3 ,html.transition h4 ,html.transition h5 ,html.transition h6 ,html.transition a ,
+html.transition p *,
+html.transition p *:before,
+html.transition p *:after {
+    animation: transitionAll 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards !important; 
+//    transition: all 750ms !important;
+//    transition-delay: 0 !important;
+ }
+
+ @keyframes transitionAll {
+    0% {
+      opacity: 0;
+    //   transform: translateX(-30px);
+    }
+
+    // 50% {
+    //     opacity: 0;
+    //   }
+  
+    100% {
+      opacity: 1;
+    //   transform: translateX(0px);
+    }
+  }

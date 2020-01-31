@@ -13,58 +13,76 @@
 
 </nav> -->
 
-<nav class="flex justify-between  items-center  flex-wrap bg-white py-2 lg:py-2 px-3" style="     box-shadow: 0 4px 12px 0 rgba(0,0,0,.05);
-">
-<div class="flex  flex-1 justify-start items-center text-black ">
+<nav id="main-navigation" class="flex justify-between  items-center  flex-wrap  py-2 lg:py-2 px-3 fixed w-full z-10 top-0 show" >
+  <div class="flex   justify-start items-center  ">
     <div class="block lg:hidden">
-        <button (click)="toggleSidebar()" class="flex items-center px-3 py-2  rounded text-black hover:text-red ">
-          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-        </button>
-      </div>
-  <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-  <a [routerLink]="[ '/' ]"> <span class="font-semibold text-xl tracking-tight">TNX</span></a>
-</div>
-  <!-- <div class="text-sm flex-1 justify-center">
-    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-black hover:text-black mr-4">
-      {{cat.categoryName}}
-    </a>
-  </div>
-   -->
-
-  <div class=" flex  flex-1 justify-end">
-    <div [hidden]="user" class="flex items-center header-guess">
-        <button  [hidden]="user" id="googleBtn" >Log in with Google</button>
-        <button  [hidden]="user" id="facebookBtn" (click)="loginFB()">Log in with Facebook</button>
-    </div>
-    <div *ngIf="user" class="flex items-center header-user">
-        <!-- <a [routerLink]="['/', 'manage','new-post']"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-teal-500 hover:bg-white "><i class="icon ion-md-brush"></i> Viết bài</a> -->
-        <img class="h-10 w-10 rounded-full" [src]="user?.avatar" alt="">
-        <p class=" hidden md:block text-xs text-gray-600 font-semibold pl-2">{{user?.name}} </p>
-        <i class="icon ion-md-arrow-dropdown text-gray-600 pl-2"></i>
-        <!-- <a  (click)="logout()">Dang xuat</a> -->
-      </div>
-    <div>
-    </div>
-  </div>
-</nav>
-
-<nav id="category-navigation" class="flex items-center category-navigation bg-white">
-    <button (click)="toggleSidebar()" class="flex items-center px-3 py-2  rounded text-black hover:text-red ">
-        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      <button (click)="toggleSidebar()" class="flex items-center px-3 py-2  rounded  ">
+        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <title>Menu</title>
+          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+        </svg>
       </button>
-  <div class="flex text-sm w-full justify-start  md:justify-center overflow-auto">
-    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+    </div>
+    <div class="style-panel-container">
+        <a [routerLink]="[ '/' ]"> <span class="logo-tnx font-semibold text-xl tracking-tight">&lt;TNX/&gt;</span></a>
+      <!-- <button id="btn-style" [attr.aria-label]="'Đổi giao diện'" class="btn-style focus:outline-none px-2">
+        <img width="25" src="assets/img/color-wheel.svg" alt="" srcset="">
+      </button> -->
+      <div class=" hidden md:block style-panel-wrapper bg-white shadow-lg rounded-b-lg h-48">
+          <app-stype-panel></app-stype-panel>
+      </div>
+    </div>
+   
+  </div>
+  <div class="hidden md:flex text-sm justify-center items-center opacity-75 mx-8">
+    <a *ngFor="let cat of categories$ | async" [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]"  [queryParams]="{src: 'toCat'+ cat.categorySlug }"
+      class="block lg:inline-block lg:mt-0 hover:text-red-600 text-base font-semibold  mr-4" [class.text-red-600]="cat.categorySlug == codeQuery" >
       {{cat.categoryName}}
     </a>
-    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
-      {{cat.categoryName}}
-    </a>
-    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
-      {{cat.categoryName}}
-    </a>
-    <a *ngFor="let cat of categories$ | async"  [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]" class="block lg:inline-block lg:mt-0 text-gray-7 00 hover:text-black mr-4 whitespace-no-wrap">
-      {{cat.categoryName}}
-    </a>
+    
+  </div>
+
+
+  <div class=" flex  flex-1 justify-end items-center">
+    
+
+    <div [hidden]="user" class=" items-center header-guess">
+      <button
+        class="inline-block   font-semibold   border-2 border-red-500 text-red-500 rounded text-sm py-1 px-2 hover:text-red-600 hover:border-red-600   focus:outline-none"
+        (click)="loginPopup()">Đăng nhập</button>
+    </div>
+    <div  [class.hidden]="!user" class="flex items-center header-user"  (click)="loginPopup()">
+      <!-- <a [routerLink]="['/', 'manage','new-post']"  class="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black hover:border-transparent hover:text-teal-500 hover:bg-white "><i class="icon ion-md-brush"></i> Viết bài</a> -->
+      <img class="h-10 w-10 rounded-full" [src]="user?.avatar" alt="">
+      <p class=" hidden md:block text-xs  font-semibold pl-2">{{user?.name}} </p>
+    </div>
+
   </div>
 </nav>
 
+<!-- <nav id="category-navigation" class="flex items-center category-navigation bg-white">
+  <button  (click)="toggleSidebar()" class="flex items-center px-3 py-2  rounded text-black hover:text-red ">
+    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <title>Menu</title>
+      <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+    </svg>
+  </button>
+  <div class="flex text-sm w-full justify-start  md:justify-center overflow-auto">
+    <a *ngFor="let cat of categories$ | async" [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]"
+      class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+    <a *ngFor="let cat of categories$ | async" [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]"
+      class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+    <a *ngFor="let cat of categories$ | async" [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]"
+      class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+    <a *ngFor="let cat of categories$ | async" [routerLink]="[ '/'+ showSlugSEO(cat.categoryName) + cat.categorySlug ]"
+      class="block lg:inline-block lg:mt-0 text-gray-700 hover:text-black mr-4 whitespace-no-wrap">
+      {{cat.categoryName}}
+    </a>
+  </div>
+</nav> -->

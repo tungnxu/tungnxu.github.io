@@ -8,7 +8,6 @@ export class TaskerFigure extends Embed {
   public static tagName = 'figure';
 
   static value(domNode): any {
-    debugger;
     const taskerImage = domNode.querySelector('.lazy-image');
     const taskerCaption = domNode.querySelector('.caption');
     if (taskerImage && taskerCaption) {
@@ -30,10 +29,11 @@ export class TaskerFigure extends Embed {
 
     const image = document.createElement('img');
     image.setAttribute('src', value.url);
+    image.setAttribute('data-zoomable', 'true');
 
     image.classList.add('lazy-image');
 
-    image.dataset.normalUrl = value;
+    // image.dataset.normalUrl = value;
     // image.dataset.smallUrl = value;
     // image.dataset.originalUrl = value;
 

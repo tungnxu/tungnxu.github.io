@@ -28,7 +28,6 @@ export class AuthenticationService {
    }
 
    public setCurrentUser(user: any): void {
-     debugger;
     localStorage.setItem('_cu', JSON.stringify(user));
     this.currentUserSubject.next(user);
     // this.currentUser$ = this.currentUserSubject.asObservable();

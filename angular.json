@@ -28,12 +28,21 @@
               "src/manifest.json",
               "src/sitemap.xml",
               "src/robots.txt",
-              "src/about.html"
+              "src/CNAME"
             ],
             "styles": [
+              {
+                "input": "src/styles/styles.scss",
+                "bundleName": "tnx-style",
+                "lazy": true
+              },
               "src/styles/styles.scss"
+
             ],
-            "scripts": ["./node_modules/quill/dist/quill.min.js"],
+            "scripts": [
+              "./node_modules/highlight.js/lib/highlight.js",
+              "./node_modules/quill/dist/quill.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -90,14 +99,17 @@
             "styles": [
               "src/styles/styles.scss"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.min.js"],
+            "scripts": [
+              "./node_modules/highlight.js/lib/highlight.js",
+              "./node_modules/quill/dist/quill.min.js",
+              "./node_modules/medium-zoom/dist/medium-zoom.min.js"],
             "assets": [
               "src/favicon.ico",
               "src/assets",
               "src/manifest.json",
               "src/sitemap.xml",
               "src/robots.txt",
-              "src/about.html"
+              "src/CNAME"
             ]
           }
         },

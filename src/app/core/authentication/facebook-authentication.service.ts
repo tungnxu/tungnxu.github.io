@@ -4,6 +4,7 @@ import { Users } from 'src/app/shared/models/users.model';
 import { md5 } from 'src/app/shared/helpers/md5';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { AuthenticationService } from './authentication.service';
+import { ModalGeneratorService } from '../services/modal-generator.service';
 declare var FB: any;
 
 @Injectable({
@@ -11,7 +12,7 @@ declare var FB: any;
 })
 export class FacebookAuthenticationService {
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private modalGeneratorService: ModalGeneratorService) {
    }
 
   public facebookInit() {
@@ -51,7 +52,7 @@ export class FacebookAuthenticationService {
                 accessToken: response.authResponse.accessToken
               }
               this.authenticationService.setCurrentUser(currentUser);
-
+              this.modalGeneratorService.removeModal();
             }
           }
         );

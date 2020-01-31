@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { CloudFilestorePaginationService } from 'src/app/core/http/cloud-filestore-pagination.service';
 import { Observable, Subscription } from 'rxjs';
 import { PostModel, PostListViewModel, PostModelResponse } from 'src/app/shared/models/posts.model';
@@ -11,6 +11,7 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   
 })
 export class PostListComponent implements OnInit {

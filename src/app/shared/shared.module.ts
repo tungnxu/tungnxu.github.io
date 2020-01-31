@@ -11,13 +11,15 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EditPostPanelComponent } from './components/edit-post-panel/edit-post-panel.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ImageShellComponent } from './components/image-shell/image-shell.component';
+import { LoginPanelComponent } from './components/login-panel/login-panel.component';
+import { StypePanelComponent } from './components/stype-panel/stype-panel.component';
 
 const exportComponent = [
-  HeaderComponent, FooterComponent, PostCardComponent, TquillEditorComponent, EditPostPanelComponent, SearchBarComponent, ImageShellComponent
+  HeaderComponent, FooterComponent, PostCardComponent, TquillEditorComponent, EditPostPanelComponent, SearchBarComponent, ImageShellComponent, LoginPanelComponent, StypePanelComponent
 ];
 
 @NgModule({
-  declarations: [exportComponent, ModalComponent ],
+  declarations: [exportComponent, ModalComponent  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -25,6 +27,6 @@ const exportComponent = [
     QuillModule.forRoot(),
   ],
   exports: [exportComponent],
-  entryComponents: [ModalComponent, EditPostPanelComponent]
+  entryComponents: [ModalComponent, EditPostPanelComponent, LoginPanelComponent]
 })
 export class SharedModule { }
