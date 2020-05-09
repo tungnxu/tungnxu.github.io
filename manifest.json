@@ -1,0 +1,22 @@
+{
+    "lang": "vi",
+    "dir": "ltr",
+    "name": "TungNXU",
+    "description": "Trở thành Front-end Developer | TNX-Portfolio",
+    "short_name": "TungNXU",
+    "icons": [{
+      "src": "assets/icon/icon-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },{
+      "src": "assets/icon/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }],
+  
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#000000"
+  }
